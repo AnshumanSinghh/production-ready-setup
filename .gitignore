@@ -4,3 +4,13 @@
 
 /src/ProductionReadySetup.Api/obj
 /.vs
+/ProductionReadySetup.Caching.Api/obj
+/src/ProductionReadySetup.Api/bin/Debug/net8.0
+/src/ProductionReadySetup.Common/bin/Debug/net8.0
+/src/ProductionReadySetup.Common/obj/Debug
+/src/ProductionReadySetup.Common/obj/ProductionReadySetup.Common.csproj.nuget.dgspec.json
+/src/ProductionReadySetup.Common/obj/ProductionReadySetup.Common.csproj.nuget.g.props
+/src/ProductionReadySetup.Common/obj/ProductionReadySetup.Common.csproj.nuget.g.targets
+/src/ProductionReadySetup.Common/obj/project.assets.json
+/src/ProductionReadySetup.Common/obj/project.nuget.cache
+/ProductionReadySetup.Caching.Api/ProductionReadySetup.Caching.Api.csproj.user

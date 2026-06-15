@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="ProductionReadySetup.Caching.Api/ProductionReadySetup.Caching.Api.csproj" Id="840854ed-1a02-4b0c-be13-d273ad139b37" />
     <Project Path="src/ProductionReadySetup.Api/ProductionReadySetup.Api.csproj" Id="d0250084-f5f9-47ed-ab14-7b8cabe7b3d2" />
     <Project Path="src/ProductionReadySetup.Common/ProductionReadySetup.Common.csproj" />
   </Folder>
