@@ -1,4 +1,6 @@
-﻿namespace ProductionReadySetup.Api.ErrorHandling
+﻿using Microsoft.AspNetCore.Http;
+
+namespace ProductionReadySetup.Common.ErrorHandling
 {
     public static class Errors
     {

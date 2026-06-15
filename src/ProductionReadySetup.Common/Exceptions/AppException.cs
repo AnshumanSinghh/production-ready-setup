@@ -1,7 +1,6 @@
-﻿using ProductionReadySetup.Api.ErrorHandling;
-using System.Net;
+﻿using ProductionReadySetup.Common.ErrorHandling;
 
-namespace ProductionReadySetup.Api.Exceptions
+namespace ProductionReadySetup.Common.Exceptions
 {
     public abstract class AppException : Exception
     {

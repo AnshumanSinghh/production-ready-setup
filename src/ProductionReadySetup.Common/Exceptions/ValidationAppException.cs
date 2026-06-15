@@ -1,6 +1,7 @@
-﻿using ProductionReadySetup.Api.ErrorHandling;
+﻿using ProductionReadySetup.Common.ErrorHandling;
+using ProductionReadySetup.Common.Exceptions;
 
-namespace ProductionReadySetup.Api.Exceptions
+namespace ProductionReadySetup.Common.Exceptions
 {
     public sealed class ValidationAppException : AppException
     {

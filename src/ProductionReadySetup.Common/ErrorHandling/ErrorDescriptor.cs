@@ -1,4 +1,4 @@
-﻿namespace ProductionReadySetup.Api.ErrorHandling
+﻿namespace ProductionReadySetup.Common.ErrorHandling
 {
     public sealed record ErrorDescriptor(
         string Code,
