@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ProductionReadySetup.Api.Exceptions;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using ProductionReadySetup.Common.Exceptions;
 
-namespace ProductionReadySetup.Api.ErrorHandling
+namespace ProductionReadySetup.Common.ErrorHandling
 {
     public static class ProblemDetailsExtensions
     {
@@ -22,11 +23,12 @@ namespace ProductionReadySetup.Api.ErrorHandling
             problemDetails.Extensions["errorCode"] = exception.Error.Code;
             problemDetails.Extensions["traceId"] = httpContext.TraceIdentifier;
 
+            // Getting Error: CS0246  - How to fix, strictly aligned with Industry Standards
             if (exception is ValidationAppException validationException)
             {
                 problemDetails.Extensions["errors"] = validationException.ValidationErrors;
             }
-
+            
             return problemDetails;
         }
 

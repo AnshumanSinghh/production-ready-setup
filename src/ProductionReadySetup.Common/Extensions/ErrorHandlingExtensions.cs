@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ProductionReadySetup.Api.ErrorHandling;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+using ProductionReadySetup.Common.ErrorHandling;
 
-namespace ProductionReadySetup.Api.Extensions
+namespace ProductionReadySetup.Common.Extensions
 {
     public static class ErrorHandlingExtensions
     {
