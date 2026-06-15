@@ -14,3 +14,6 @@
 /src/ProductionReadySetup.Common/obj/project.assets.json
 /src/ProductionReadySetup.Common/obj/project.nuget.cache
 /ProductionReadySetup.Caching.Api/ProductionReadySetup.Caching.Api.csproj.user
+/src/ProductionReadySetup.Caching.Api/bin/Debug/net8.0
+/src/ProductionReadySetup.Caching.Api/obj
+*.user
