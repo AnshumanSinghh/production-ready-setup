@@ -185,7 +185,7 @@ namespace ProductionReadySetup.Caching.Api.Caching
             // Resolved here rather than in constructor so it reflects
             // any runtime options changes (e.g. integration tests overriding options).
             return 0; // Override if RedisOptions.DatabaseIndex is wired here
-        }
+        }                
         #endregion
     }
 }
