@@ -23,6 +23,13 @@ builder.Services.AddProductionErrorHandling();
 // RedisOptions, CacheOptions, and Redis health check.
 builder.Services.AddProductionRedisCache(builder.Configuration);
 
+// ── HYBRID CACHE (Track 4) ────────────────────────────────────────────────────
+// Registers: IMemoryCache, keyed "memory" → MemoryAppCache,
+// keyed "redis" → RedisAppCache, keyed "hybrid" → HybridAppCache.
+// Must be called AFTER AddProductionRedisCache — depends on RedisOptions
+// and IConnectionMultiplexer being already registered.
+builder.Services.AddProductionHybridCaching();
+
 // ── SWAGGER ───────────────────────────────────────────────────────────────────
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -8,7 +8,15 @@
     ///   CacheOptions = HOW to use the cache (application behavior concern).
     ///   Keeping them separate lets you swap Redis config without touching
     ///   cache TTL/prefix logic and vice versa.
+    ///   
+    /// UPDATED IN TRACK 4:
+    ///   Added MemoryTtl — controls L1 (in-process memory) expiry.
+    ///   L1 TTL must always be shorter than L2 (Redis) TTL.
     ///
+    ///   WHY: If L1 TTL >= L2 TTL, memory serves stale data even after
+    ///   Redis has expired it. L1 expires first → request falls to L2
+    ///   (not DB) → fresh data repopulates L1. Correct degradation path.
+    /// 
     /// BOUND TO: appsettings.json → "Cache" section
     /// </summary>
     public sealed class CacheOptions
@@ -24,21 +32,21 @@
         public string AppPrefix { get; init; } = "app";
 
         /// <summary>
-        /// Environment segment in the key.
+        /// Environment segment injected into every cache key.
         /// WHY: Prevents key collision if staging and production
         /// accidentally share a Redis instance (not recommended, but happens).
         /// </summary>
         public string Environment { get; init; } = "development";
 
         /// <summary>
-        /// Default TTL (Time To Live) for cache entries when no explicit TTL is provided.
+        /// Default TTL (Time To Live) for L2 (Redis) cache entries when no explicit TTL is provided.
         /// WHY 5 minutes: Safe default for most read-heavy scenarios.
         /// Override per call for data with different freshness requirements.
         /// </summary>
         public TimeSpan DefaultTtl { get; init; } = TimeSpan.FromMinutes(5);
 
         /// <summary>
-        /// Maximum jitter added to TTL to prevent cache stampede.
+        /// Maximum jitter added to L2 TTL to prevent cache stampede on mass expiry.
         ///
         /// WHAT IS STAMPEDE:
         ///   If 1000 entries all expire at the same second, 1000 requests
@@ -52,7 +60,22 @@
         public TimeSpan MaxJitter { get; init; } = TimeSpan.FromSeconds(30);
 
         /// <summary>
+        /// TTL for L1 (in-process memory) cache entries.
+        ///
+        /// RULE: Always less than DefaultTtl (L2).
+        /// WHY 1 minute: Short enough that memory stays reasonably fresh,
+        /// long enough to absorb burst traffic without hitting Redis.
+        ///
+        /// PITFALL: Do not set this equal to or greater than DefaultTtl.
+        /// If L1 and L2 expire at the same time, both miss simultaneously
+        /// → stampede hits the DB directly, bypassing Redis entirely.
+        /// </summary>
+        public TimeSpan MemoryTtl { get; init; } = TimeSpan.FromMinutes(1);
+
+        /// <summary>
         /// Whether cache SET failures should throw or be swallowed.
+        /// Default false — cache failure degrades performance, not correctness.
+        /// Redis/Memory downtime should not cause 500s.
         ///
         /// WHY FALSE (default):
         ///   Cache is a performance optimization, not a source of truth.
