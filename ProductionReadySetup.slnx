@@ -1,8 +1,9 @@
 <Solution>
   <Folder Name="/src/">
-    <Project Path="src/ProductionReadySetup.Caching.Api/ProductionReadySetup.Caching.Api.csproj" Id="840854ed-1a02-4b0c-be13-d273ad139b37" />
     <Project Path="src/ProductionReadySetup.Api/ProductionReadySetup.Api.csproj" Id="d0250084-f5f9-47ed-ab14-7b8cabe7b3d2" />
+    <Project Path="src/ProductionReadySetup.Caching.Api/ProductionReadySetup.Caching.Api.csproj" Id="840854ed-1a02-4b0c-be13-d273ad139b37" />
     <Project Path="src/ProductionReadySetup.Common/ProductionReadySetup.Common.csproj" />
+    <Project Path="src/ProductionReadySetup.Contracts/ProductionReadySetup.Contracts.csproj" Id="8c86ff9c-a1a3-4262-9862-1c460f532fc0" />
   </Folder>
   <Folder Name="/tests/" />
 </Solution>
