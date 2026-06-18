@@ -17,3 +17,6 @@
 /src/ProductionReadySetup.Caching.Api/bin/Debug/net8.0
 /src/ProductionReadySetup.Caching.Api/obj
 *.user
+/src/ProductionReadySetup.*/bin*
+/src/ProductionReadySetup.*/obj*
+*.http
