@@ -34,14 +34,17 @@ namespace ProductionReadySetup.Caching.Api.Extensions
             this IServiceCollection services,
             IConfiguration configuration)
         {
+            // AddOptions<T>() takes the raw options class — the framework wraps
+            // it in IOptions<T> automatically for you. Wrapping it yourself creates
+            // a double-wrapped type that can never be resolved correctly from DI.         
             services
-                .AddOptions<IOptions<RedisOptions>>()
+                .AddOptions<RedisOptions>()
                 .BindConfiguration(RedisOptions.SectionName)
                 .ValidateDataAnnotations()
                 .ValidateOnStart(); // Fail fast — bad Redis config crashes at startup
 
             services
-                .AddOptions<IOptions<CacheOptions>>()
+                .AddOptions<CacheOptions>()
                 .BindConfiguration(CacheOptions.SectionName)
                 .ValidateDataAnnotations()
                 .ValidateOnStart(); // Fail fast — bad Redis config crashes at startup

@@ -4,6 +4,7 @@
     <Project Path="src/ProductionReadySetup.Caching.Api/ProductionReadySetup.Caching.Api.csproj" Id="840854ed-1a02-4b0c-be13-d273ad139b37" />
     <Project Path="src/ProductionReadySetup.Common/ProductionReadySetup.Common.csproj" />
     <Project Path="src/ProductionReadySetup.Contracts/ProductionReadySetup.Contracts.csproj" Id="8c86ff9c-a1a3-4262-9862-1c460f532fc0" />
+    <Project Path="src/ProductionReadySetup.Messaging/ProductionReadySetup.Messaging.csproj" Id="1ed33bdf-a898-4b69-a393-a4106855897e" />
   </Folder>
   <Folder Name="/tests/" />
 </Solution>
