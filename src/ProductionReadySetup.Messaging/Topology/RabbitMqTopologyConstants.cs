@@ -1,6 +1,9 @@
-﻿using System;
+﻿using RabbitMQ.Client;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,9 +18,30 @@ namespace ProductionReadySetup.Messaging.Topology
     /// </summary>
     public static class RabbitMqTopologyConstants
     {
-        // ── Exchange types ───────────────────────────────────────────────────────
+        // ── Exchange types ───────────────────────────────────────────────────────       
+
+        //HEADERS exchange:
+        //  Routes based on message header values, not routing key
+        //  Rarely used in practice
+
+        //DIRECT exchange(OUR CHOICE) :
+        //  "Send this letter ONLY to the mailbox labeled 'orders.created'"
+        //  Exact routing key match — one message → one specific queue
+        //  Use when: point-to-point, one producer → one consumer queue
         public const string ExchangeTypeDirect = "direct";
+
+        //TOPIC exchange:
+        //  "Send this letter to anyone subscribed to 'orders.*'"
+        //  Wildcard routing key matching
+        //  Use when: flexible routing with patterns
         public const string ExchangeTypeTopic = "topic";
+
+        // FANOUT exchange:
+        // "Send this letter to EVERYONE"
+        // One message → ALL bound queues receive it
+        // Use when: broadcasting(notifications, cache invalidation)
+        // FANOUT here means: broadcast THIS specific invalidation message
+        // to ALL pods" NOT = "invalidate ALL cache keys on ALL pods
         public const string ExchangeTypeFanout = "fanout";
 
         // ── Queue argument keys (x-arguments) ───────────────────────────────────

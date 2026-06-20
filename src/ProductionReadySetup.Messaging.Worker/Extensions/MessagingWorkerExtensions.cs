@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ProductionReadySetup.Messaging.Worker.Extensions
 {
@@ -53,7 +54,10 @@ namespace ProductionReadySetup.Messaging.Worker.Extensions
             // ── 4. Consumer hosted service ────────────────────────────────────────
             // Registered as IHostedService — .NET starts it automatically
             // after all other hosted services (including RabbitMqTopologySetup).
-            // WHY: Topology must exist before consumer tries to BasicConsume.
+            // WHY: Topology must exist before consumer tries to BasicConsume
+            // EXPLANATION: It tells .NET: "When the application starts, create an
+            // instance of OrderCreatedConsumer and call its StartAsync() method.
+            // When the application stops, call its StopAsync() method."
             services.AddHostedService<OrderCreatedConsumer>();
 
             return services;

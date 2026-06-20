@@ -100,6 +100,9 @@ namespace ProductionReadySetup.Messaging.Options
 
         /// <summary>
         /// Routing key used for order-created events.
+        /// NOTE: EXCHANGE alone does not know WHERE to deliver a message.
+        /// ROUTING KEY is the LABEL (Address) on the message that tells the
+        /// exchange which bound queue should receive it.
         /// </summary>
         public string OrderCreatedRoutingKey { get; init; } = "orders.created";
 
