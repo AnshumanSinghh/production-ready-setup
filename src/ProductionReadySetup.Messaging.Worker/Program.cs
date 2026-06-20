@@ -3,6 +3,12 @@ using ProductionReadySetup.Messaging.Extensions;
 using ProductionReadySetup.Messaging.Worker.Extensions;
 using Serilog;
 
+// Bootstrapper Logger
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .WriteTo.Console()
+    .CreateBootstrapLogger();
+
 var builder = Host.CreateApplicationBuilder(args);
 
 // ── RABBITMQ INFRASTRUCTURE ───────────────────────────────────────────────────
@@ -20,9 +26,6 @@ builder.Services.AddProductionMessagingConsumer(builder.Configuration);
 
 // ── HEALTH CHECKS ─────────────────────────────────────────────────────────────
 builder.Services.AddHealthChecks();
-
-
-//builder.Services.AddHostedService<Worker>();
 
 var host = builder.Build();
 

@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static System.Net.WebRequestMethods;
 
@@ -100,6 +101,14 @@ namespace ProductionReadySetup.Messaging.Topology
         private async Task DeclareTopologyAsync(IChannel channel, CancellationToken ct)
         {
             // ── 1. Main exchange ────────────────────────────────────────────────
+
+            //          WHY direct FOR US:
+            // We have ONE producer(Messaging.Api) publishing OrderCreatedEvents
+            // and ONE consumer queue(orders.created) for that exact event type.
+            // No need for wildcards(topic) or broadcasting(fanout).
+            // "Send OrderCreatedEvent to exactly the orders.created queue"
+            // = direct exchange, exact routing key match.
+            // Simple, predictable, no accidental misrouting.
             await channel.ExchangeDeclareAsync(
                 exchange: _options.OrdersExchange,
                 type: RabbitMqTopologyConstants.ExchangeTypeDirect,
