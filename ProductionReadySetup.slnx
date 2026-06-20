@@ -5,6 +5,7 @@
     <Project Path="src/ProductionReadySetup.Common/ProductionReadySetup.Common.csproj" />
     <Project Path="src/ProductionReadySetup.Contracts/ProductionReadySetup.Contracts.csproj" Id="8c86ff9c-a1a3-4262-9862-1c460f532fc0" />
     <Project Path="src/ProductionReadySetup.Messaging.Api/ProductionReadySetup.Messaging.Api.csproj" Id="b747ec83-dec4-4332-ac9d-30a75a6fb8e3" />
+    <Project Path="src/ProductionReadySetup.Messaging.Worker/ProductionReadySetup.Messaging.Worker.csproj" Id="aac030c6-38d0-45c0-a026-530f466167f9" />
     <Project Path="src/ProductionReadySetup.Messaging/ProductionReadySetup.Messaging.csproj" Id="1ed33bdf-a898-4b69-a393-a4106855897e" />
   </Folder>
   <Folder Name="/tests/" />
